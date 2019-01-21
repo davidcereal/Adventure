@@ -16,8 +16,8 @@ const Logo = styled.div`
           height: ${rem(30)};
         `
       : css`
-          background-image: url(/static/nav-logo.png);
-          width: ${rem(164)};
+          background-image: url(/static/mountain-range.svg);
+          width: ${rem(50)};
           height: ${rem(40)};
         `};
 `

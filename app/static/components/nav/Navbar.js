@@ -13,42 +13,40 @@ import Logo from './Logo'
 // import MobileNavbar from './MobileNavbar'
 // import SearchWithAlgolia from './SearchWithAlgolia'
 
+
 const Wrapper = styled.nav`
-  position: fixed;
-  left: 0;
-  box-sizing: border-box;
+  grid-area: header;
+  justify-self: stretch;
   z-index: 3;
-  width: 100%;
-  height: ${rem(navbarHeight)};
+  /* height: ${rem(navbarHeight)}; */
   font-family: ${headerFont};
   font-size: ${rem(15)};
   font-weight: 500;
   background: ${props => (props.transparent ? 'transparent' : violetRed)};
   transition: background 300ms ease-out;
   color: white;
-  padding: 0;
 `
 
 const StartWrapper = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-start; */
 `
 
 const EndWrapper = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; */
 `
 /* stylelint-disable */
 const StyledSocial = styled(Social)``
 /* stylelint-enable */
 
 const NormalNavbar = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
   padding: 0 ${rem(20)};
-  justify-content: space-between;
+  justify-content: space-between; */
   ${StartWrapper}, ${EndWrapper} ${StyledSocial} {
     ${mobile(css`
       display: none;
@@ -151,9 +149,9 @@ const LogoLink = styled(Link).attrs({
   unstyled: true,
   href: '/',
 })`
-  display: inline-block;
-  vertical-align: center;
-  margin-right: ${rem(35)};
+  // display: inline-block;
+  // vertical-align: center;
+  // margin-right: ${rem(35)};
 `
 
 class Navbar extends PureComponent {
