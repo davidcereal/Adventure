@@ -34,14 +34,15 @@ const Link = ({ children, className, inline, unstyled, white, ...rest }) => {
   if (inline) {
     Child = InlineLink
   } else if (unstyled) {
-    Child = 'a'
+    Child = styled.a`
+    color:  ${props => props.white};
+    `
   }
 
   let dataAttrs
   if (white) {
-    dataAttrs = { 'data-white': white }
+    dataAttrs = { 'color': white }
   }
-
   return (
     <UnstyledLink {...rest}>
       <Child

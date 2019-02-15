@@ -25,30 +25,23 @@ const NavLink = styled(Link).attrs({
   letter-spacing: ${rem(0.4)};
   color: currentColor;
   text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  },
+  &:hover,
   &:focus {
     opacity: 0.8;
-    text-decoration: none;
   }
   &:active {
     transform: scale(0.95);
     opacity: 0.6;
   }
-  &:visited {
-    text-decoration: none;
-  }
-
 `;
 
 const NavLinks = () => (
   <Wrapper>
-    <NavLink href="/docs">Documentation</NavLink>
+    <NavLink href="/docs">Reviews</NavLink>
     <NavSeparator />
-    <NavLink href="/ecosystem">Ecosystem</NavLink>
+    <NavLink href="/ecosystem">Planning</NavLink>
     <NavSeparator />
-    <NavLink href="/releases">Releases</NavLink>
+    <NavLink href="/releases">Manage Kit</NavLink>
   </Wrapper>
 );
 

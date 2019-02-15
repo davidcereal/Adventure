@@ -2,7 +2,7 @@ import React, { PureComponent, createRef } from 'react'
 import styled, { css } from 'styled-components'
 import { Close } from 'styled-icons/material'
 import rem from '../../utils/rem'
-import { violetRed, paleGrey } from '../../utils/colors'
+import { violetRed, paleGrey} from '../../utils/colors'
 import { navbarHeight } from '../../utils/sizes'
 import { headerFont } from '../../utils/fonts'
 import { mobile } from '../../utils/media'
@@ -13,12 +13,29 @@ import Logo from './Logo'
 // import MobileNavbar from './MobileNavbar'
 // import SearchWithAlgolia from './SearchWithAlgolia'
 
+// const Grid = styled.div`
+// display: grid;
+// grid-gap: 10px;
+// grid-template-columns: 100px 500px 100px;
+// grid-template-rows: 50px;
+// grid-template-areas:
+//   "nav1 nav2 nav3";
+// `
+
+// const LogoGridItem = styled.div`
+//
+// grid-area: nav1;
+// justify-self: center;
+// `
+
+
 
 const Wrapper = styled.nav`
   grid-area: header;
   justify-self: stretch;
+  align-self: center;
   z-index: 3;
-  /* height: ${rem(navbarHeight)}; */
+  height: ${rem(navbarHeight)};
   font-family: ${headerFont};
   font-size: ${rem(15)};
   font-weight: 500;
@@ -28,25 +45,28 @@ const Wrapper = styled.nav`
 `
 
 const StartWrapper = styled.div`
-  /* display: flex;
+
+  display: flex;
   align-items: center;
-  justify-content: flex-start; */
+  justify-content: flex-start;
 `
 
 const EndWrapper = styled.div`
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-end; */
+  justify-content: flex-end;
 `
 /* stylelint-disable */
-const StyledSocial = styled(Social)``
+const StyledSocial = styled(Social)`
+  color: white;
+`
 /* stylelint-enable */
 
 const NormalNavbar = styled.div`
-  /* display: flex;
+  display: flex;
   align-items: center;
   padding: 0 ${rem(20)};
-  justify-content: space-between; */
+  justify-content: space-between;
   ${StartWrapper}, ${EndWrapper} ${StyledSocial} {
     ${mobile(css`
       display: none;
@@ -60,98 +80,13 @@ const StyledModalCloseIcon = styled(Close)`
   color: white;
 `
 
-const AlgoliaModal = styled.div`
-  ${mobile(css`
-    background: currentColor;
-    overflow: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  `)};
-`
-
 const baseZ = 1
 
-const AlgoliaModalHeader = styled.div`
-  display: none;
-  color: currentColor;
-  ${mobile(css`
-    display: ${props => (props.isOpen ? 'block' : 'none')};
-    button {
-      cursor: pointer;
-      padding: 0;
-      position: fixed;
-      right: ${rem(10)};
-      top: ${rem(11)};
-      border: none;
-      z-index: ${baseZ + 1};
-    }
-  `)};
-`
-
-const AlgoliaModalOverlay = styled.div`
-  margin-right: ${rem(10)};
-  ${mobile(css`
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: ${baseZ};
-    left: 0;
-    display: ${props => (props.isOpen ? 'block' : 'none')};
-    background: ${paleGrey};
-    overflow-y: auto;
-    margin: 0;
-    .algolia-autocomplete .ds-dropdown-menu {
-      position: static !important;
-      display: block;
-      max-width: 100%;
-      min-width: 0;
-    }
-  `)};
-`
-
-class ModalContainer extends PureComponent {
-  modalElement = createRef()
-  onModalOverlayClick = e => {
-    if (!this.modalElement.current.contains(e.target)) {
-      this.props.requestModalClose()
-    }
-  }
-  onCloseButtonClick = e => {
-    e.stopPropagation()
-    this.props.requestModalClose()
-  }
-  render() {
-    return (
-      <>
-        <AlgoliaModalHeader isOpen={this.props.isOpen}>
-          <button onClick={this.onCloseButtonClick}>
-            <StyledModalCloseIcon />
-          </button>
-        </AlgoliaModalHeader>
-        <AlgoliaModalOverlay
-          onClick={this.onModalOverlayClick}
-          isOpen={this.props.isOpen}
-        >
-          <AlgoliaModal ref={this.modalElement}>
-            <div>{this.props.children}</div>
-          </AlgoliaModal>
-        </AlgoliaModalOverlay>
-      </>
-    )
-  }
-}
 
 const LogoLink = styled(Link).attrs({
   unstyled: true,
   href: '/',
 })`
-  // display: inline-block;
-  // vertical-align: center;
-  // margin-right: ${rem(35)};
 `
 
 class Navbar extends PureComponent {
@@ -176,18 +111,12 @@ class Navbar extends PureComponent {
       <Wrapper>
         <NormalNavbar>
           <StartWrapper>
-            <LogoLink>
-              <Logo />
-            </LogoLink>
+              <LogoLink>
+                <Logo />
+              </LogoLink>
             <NavLinks />
           </StartWrapper>
           <EndWrapper>
-            <ModalContainer
-              isOpen={this.state.isOpen}
-              requestModalClose={this.closeModal}
-            >
-              {/* <SearchWithAlgolia requestModalClose={this.closeModal} /> */}
-            </ModalContainer>
             <StyledSocial />
           </EndWrapper>
         </NormalNavbar>
